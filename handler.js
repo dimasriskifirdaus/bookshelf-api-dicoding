@@ -2,6 +2,7 @@ const {nanoid} = require('nanoid');
 const book = require('./book');
 
 const addNewBook = (request, h) => {
+  const id = nanoid(16);
   const {
     name,
     year,
@@ -12,7 +13,6 @@ const addNewBook = (request, h) => {
     readPage,
     reading,
   } = request.payload;
-  const id = nanoid(16);
   if (pageCount === readPage) {
     const finished = true;
     return finished;
@@ -23,6 +23,7 @@ const addNewBook = (request, h) => {
   const updatedAt = insertedAt;
 
   const newBooks = {
+    id,
     name,
     year,
     author,
@@ -30,9 +31,8 @@ const addNewBook = (request, h) => {
     publisher,
     pageCount,
     readPage,
-    reading,
-    id,
     finished,
+    reading,
     insertedAt,
     updatedAt,
   };
